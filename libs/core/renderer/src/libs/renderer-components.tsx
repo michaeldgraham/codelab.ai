@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
+import { Form as AntForm } from 'antd'
 import React, { FunctionComponent, PropsWithChildren } from 'react'
 import { propsMapLeaf } from '../../../props/src/mapper/Props-map--leaf'
 import { elementParameterFactory } from './element-factory'
@@ -18,6 +19,18 @@ export const buildComponents = <P extends {} = {}>(
    */
   const componentBuilderIteratee: NodeFactory<void> = (node: any) => {
     const [Component, props] = elementParameterFactory(node)
+
+    if (node.type === 'React.Form') {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const [form] = AntForm.useForm()
+      node.props = {
+        ...props,
+        form: {
+          __type: ['Leaf'],
+          value: form,
+        },
+      }
+    }
 
     node.Component = React.createElement(Component, props)
   }

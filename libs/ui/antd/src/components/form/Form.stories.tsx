@@ -4,6 +4,7 @@ import {
   formDefaultData,
   formObjectData,
   nodeFormData,
+  hooksData,
 } from './data'
 import { Renderer } from '@codelab/core/renderer'
 
@@ -37,6 +38,12 @@ export const ConditionalForm = () => {
 
 export const NodeForm = () => {
   const Form = Renderer.components(nodeFormData)
+
+  return <Form />
+}
+
+export const FormHooks = () => {
+  const Form = Renderer.components(hooksData)
 
   return <Form />
 }
