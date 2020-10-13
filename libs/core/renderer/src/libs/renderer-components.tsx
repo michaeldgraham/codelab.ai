@@ -23,6 +23,7 @@ export const buildComponents = <P extends {} = {}>(
     if (node.type === 'React.Form') {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const [form] = AntForm.useForm()
+
       node.props = {
         ...props,
         form: {

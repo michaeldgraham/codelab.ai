@@ -42,7 +42,7 @@ export const hooksData: NodeReactI<
             type: 'primary',
             onClick: {
               __type: ['Eval'],
-              value: 'return ()=>{this.form.resetFields()}',
+              value: 'return () => this.form.resetFields()',
             },
           },
           children: [
