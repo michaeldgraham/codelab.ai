@@ -6,51 +6,56 @@ import { NodeReactI } from '@codelab/shared/interface/node'
 export const hooksData: NodeReactI<
   Form.Props | Form.ItemProps | Text.Props | Button.Props
 > = {
-  type: 'React.Form',
-  props: {
-    name: 'form-hooks',
-    initialValues: {
-      name: 'Codelab',
-    },
-    onFinish: {
-      __type: ['Leaf', 'Eval'],
-      value: 'return (values) => console.log(values)',
-    },
-  },
+  type: 'React.FormHooksWrapper',
   children: [
     {
-      type: 'React.Form.Item',
+      type: 'React.Form',
       props: {
-        label: 'Name',
-        name: ['name'],
-      },
-      children: [
-        {
-          type: 'React.Input',
+        name: 'form-hooks',
+        initialValues: {
+          name: 'Codelab',
         },
-      ],
-    },
-    {
-      type: 'React.Form.Item',
-      props: {
-        name: 'reset_button',
+        onFinish: {
+          __type: ['Leaf', 'Eval'],
+          value: 'console.log(this); return (values) => console.log(values)',
+        },
       },
       children: [
         {
-          type: 'React.Button',
+          type: 'React.Form.Item',
           props: {
-            type: 'primary',
-            onClick: {
-              __type: ['Eval'],
-              value: 'return () => this.form.resetFields()',
-            },
+            label: 'Name',
+            name: ['name'],
           },
           children: [
             {
-              type: 'React.Text',
+              type: 'React.Input',
+            },
+          ],
+        },
+        {
+          type: 'React.Form.Item',
+          props: {
+            name: 'reset_button',
+          },
+          children: [
+            {
+              type: 'React.Button',
               props: {
-                value: 'Reset',
+                type: 'primary',
+                onClick: {
+                  __type: ['Eval'],
+                  value: 'return () => this.form.resetFields()',
+                },
               },
+              children: [
+                {
+                  type: 'React.Text',
+                  props: {
+                    value: 'Reset',
+                  },
+                },
+              ],
             },
           ],
         },

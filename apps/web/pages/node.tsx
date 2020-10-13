@@ -4,8 +4,9 @@ import { useActor } from '@xstate/react'
 import React, { useContext } from 'react'
 import Highlight from 'react-highlight'
 import { ButtonGroup } from '../src/node/ButtonGroup'
-import { ModalForm } from '../src/node/ModalForm'
+import { ModalFormProps, modalFormData } from '../src/node/ModalForm'
 import { Table } from '../src/node/Table'
+import { Renderer } from '@codelab/core/renderer'
 import { BaseNodeType } from '@codelab/shared/interface/node'
 import { MachineContext, NodeServiceContext } from '@codelab/ui/component'
 
@@ -115,6 +116,9 @@ const NodePage = (props: any) => {
       return { label: node.id, value: node.id }
     }),
   ]
+
+  // render need to be here, otherwise it will lead to errors about react-hooks-rules
+  const ModalForm = Renderer.components<ModalFormProps>(modalFormData)
 
   return (
     <>

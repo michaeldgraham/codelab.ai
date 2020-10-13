@@ -20,7 +20,7 @@ export const buildComponents = <P extends {} = {}>(
   const componentBuilderIteratee: NodeFactory<void> = (node: any) => {
     const [Component, props] = elementParameterFactory(node)
 
-    if (node.type === 'React.Form') {
+    if (node.type === 'React.FormHooksWrapper') {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const [form] = AntForm.useForm()
 
@@ -33,6 +33,16 @@ export const buildComponents = <P extends {} = {}>(
       }
     }
 
+    if (node.type === 'React.Form') {
+      // link passed formInstance to the form element
+      node.props = {
+        ...props,
+        form: {
+          __type: ['Eval', 'Leaf'],
+          value: 'return this.form? this.form: null',
+        },
+      }
+    }
     node.Component = React.createElement(Component, props)
   }
 

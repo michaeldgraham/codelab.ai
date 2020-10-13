@@ -27,6 +27,7 @@ export enum ReactType {
   'React.Breadcrumb' = 'React.Breadcrumb',
   'React.Breadcrumb.Item' = 'React.Breadcrumb.Item',
   'React.Dropdown' = 'React.Dropdown',
+  'React.FormHooksWrapper' = 'React.FormHooksWrapper',
   'React.Form' = 'React.Form',
   'React.Form.Item' = 'React.Form.Item',
   'React.Form.ItemHook' = 'React.Form.ItemHook',

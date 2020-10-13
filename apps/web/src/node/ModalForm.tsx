@@ -1,4 +1,3 @@
-import { Renderer } from '@codelab/core/renderer'
 import {
   NodeReactI,
   ReactType,
@@ -178,7 +177,7 @@ export const modalFormData: NodeReactI = {
     title: 'Create Node Form',
     footer: null,
     visible: {
-      __type: ['Eval'],
+      __type: ['Eval', 'Single'],
       value: 'return this.visibility',
     },
     onCancel: {
@@ -187,45 +186,48 @@ export const modalFormData: NodeReactI = {
         return () => this.handlecancel()
       `,
     },
-    ctx: {
-      __type: ['Eval', 'Leaf'],
-      value: `
-        const [form] = this.antd.Form.useForm();
-
-        this.React.useEffect(()=> {
-          this.visibility ? form.setFieldsValue(this.initialvalues) : form.resetFields()
-        }, [this.visibility])
-
-        return { form }
-      `,
-    },
   },
   children: [
     {
-      type: 'React.Form',
-      props: {
-        form: { __type: ['Eval'], value: 'return this.ctx.form' },
-        name: 'create-node-form',
-        onFinish: {
-          __type: ['Eval'],
-          value: 'return this.handlesubmit',
-        },
-      },
+      type: 'React.FormHooksWrapper',
       children: [
-        nodeID,
-        nodeTypeSelect,
-        reactNodeFields,
-        treeNodeFields,
-        refNodeFields,
-        nodeFormData,
-        parentNodeSelect,
-        submitButtonData,
+        {
+          type: 'React.Form',
+          props: {
+            name: 'create-node-form',
+            onFinish: {
+              __type: ['Eval'],
+              value: 'return this.handlesubmit',
+            },
+            ctx: {
+              __type: ['Eval', 'Leaf'],
+              value: `
+
+        this.React.useEffect(()=> {
+debugger;
+          this.visibility ? this.form.setFieldsValue(this.initialvalues) : this.form.resetFields()
+        }, [this.visibility])
+
+      `,
+            },
+          },
+          children: [
+            nodeID,
+            nodeTypeSelect,
+            reactNodeFields,
+            treeNodeFields,
+            refNodeFields,
+            nodeFormData,
+            parentNodeSelect,
+            submitButtonData,
+          ],
+        },
       ],
     },
   ],
 }
 
-type ModalFormProps = {
+export type ModalFormProps = {
   handlesubmit: Function
   visibility: boolean
   handlecancel: Function
@@ -233,4 +235,4 @@ type ModalFormProps = {
   initialvalues?: any
 }
 
-export const ModalForm = Renderer.components<ModalFormProps>(modalFormData)
+// export const ModalForm = Renderer.components<ModalFormProps>(modalFormData)

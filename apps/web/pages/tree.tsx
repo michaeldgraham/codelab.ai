@@ -4,12 +4,13 @@ import axios from 'axios'
 import hljs from 'highlight.js'
 import json from 'highlight.js/lib/languages/json'
 import React from 'react'
-import { ModalForm } from '../src/node/ModalForm'
+import { ModalFormProps, modalFormData } from '../src/node/ModalForm'
 import { NodeTree, NodeTreeProps } from '../src/node/NodeTree'
 import { Table } from '../src/node/Table'
 import { convertNodeTreeToAntTreeDataNode } from '../src/node/utils/convertNodeTreeToAntTreeNode'
 import { ButtonGroup } from '../src/tree/ButtonGroup'
 import { NodeEntity } from '@codelab/core/node'
+import { Renderer } from '@codelab/core/renderer'
 import { findNode } from '@codelab/core/tree'
 import { BaseNodeType, NodeA } from '@codelab/shared/interface/node'
 
@@ -196,6 +197,9 @@ const TreePage = () => {
       return { label: node._id, value: node._id }
     }),
   ]
+
+  // render need to be here, otherwise it will lead to errors about react-hooks-rules
+  const ModalForm = Renderer.components<ModalFormProps>(modalFormData)
 
   return (
     <>
