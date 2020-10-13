@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { Form, message, notification } from 'antd'
+import { message, notification } from 'antd'
 import axios from 'axios'
 import { pipe } from 'ramda'
 import React from 'react'
@@ -33,7 +33,7 @@ export const evalPropValue = (
     return new Function(value.value).call({
       React,
       axios,
-      antd: { notification, message, Form },
+      antd: { notification, message },
       ...props,
     })
   }
