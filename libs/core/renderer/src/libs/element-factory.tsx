@@ -144,7 +144,7 @@ export const elementParameterFactory: NodeFactory<
     case NodeType.React_Dropdown:
       return [Dropdown as any, props]
     case NodeType.React_Form:
-      return [Form, props]
+      return [CodelabForm.Form, props]
     case NodeType.React_Form_Item:
       return [Form.Item as any, props]
     case NodeType.React_Form_List:

@@ -75,4 +75,34 @@ describe('Form', () => {
       defaultValue,
     )
   })
+
+  let consoleOutput = ''
+
+  const mockedLog = (output: string) => {
+    consoleOutput = output
+  }
+
+  // eslint-disable-next-line no-console
+  console.log = mockedLog
+
+  it('should return mapped values on finish', async () => {
+    const { getByText, getByLabelText, getAllByLabelText } = render(
+      <ObjectForm />,
+    )
+
+    fireEvent.click(getByText('Submit'))
+
+    await waitFor(() =>
+      expect(consoleOutput).toBe(
+        JSON.stringify({
+          devs: [{ name: 'Webber' }, { name: 'Vien' }],
+          info: {
+            user: {
+              address: { number: '1200', street: 'Park ave.' },
+            },
+          },
+        }),
+      ),
+    )
+  })
 })

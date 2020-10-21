@@ -14,7 +14,6 @@ export const formDefaultData: NodeReactI<
     onFinish: {
       __type: [PropType.Eval],
       value: `
-        console.log(this);
         return () => console.log("good");
       `,
     },

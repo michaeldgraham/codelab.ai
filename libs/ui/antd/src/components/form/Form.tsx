@@ -7,6 +7,7 @@ import { Select } from '../..'
 import { Form } from './Form.types'
 import { NodeReactI, NodeType } from '@codelab/shared/interface/node'
 import { PropJsonValue, PropType } from '@codelab/shared/interface/props'
+import { Mapper } from '@codelab/shared/utils'
 
 // Copy because not exported from antd
 export interface FieldData {
@@ -35,8 +36,18 @@ export type FormListProps = Omit<AntFormListProps, 'children'> & {
 const CustomForm: React.FC<FormProps> = ({ children, ...props }: any) => {
   const [antform] = AntForm.useForm()
 
+  const { map, onFinish } = props
+
+  const finish = (values: any) => {
+    if (map) {
+      const mapper = new Mapper(values, map)
+
+      onFinish(mapper.execute2())
+    } else onFinish(values)
+  }
+
   return (
-    <AntForm {...props}>
+    <AntForm {...props} onFinish={finish}>
       {React.Children.toArray(children).map((child: any, index: number) => {
         return React.cloneElement(child, {
           ...child.props,
