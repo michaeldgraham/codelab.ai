@@ -18,14 +18,14 @@ export const modal: NodeReactI<Modal.Props | Text.Props> = {
   props: {
     title: 'Basic Modal',
     footer: null,
-    // onOk: {
-    //   __type: ['Eval'],
-    //   value: `return () => this.send({ type: 'CLOSE' })`,
-    // },
-    // onCancel: {
-    //   __type: ['Eval'],
-    //   value: `return () => this.send({ type: 'CLOSE' })`,
-    // },
+    onOk: {
+      __type: ['Eval'],
+      value: `return () => this.send({ type: 'CLOSE' })`,
+    },
+    onCancel: {
+      __type: ['Eval'],
+      value: `return () => this.send({ type: 'CLOSE' })`,
+    },
     visible: {
       __type: ['Eval'],
       value: 'return this.state.context.visible',

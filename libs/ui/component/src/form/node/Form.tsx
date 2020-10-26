@@ -37,7 +37,7 @@ export const formNode: NodeReactI = {
           __type: ['Eval'],
           value: `
             return (values) => {
-              this.handleSubmit(values);
+              this.handlesubmit(values);
               this.form.resetFields();
             }
           `,
@@ -59,7 +59,7 @@ export const formNode: NodeReactI = {
 }
 
 interface FormProps {
-  handleSubmit: Function
+  handlesubmit: Function
 }
 
 export const FormNode: React.FC<
