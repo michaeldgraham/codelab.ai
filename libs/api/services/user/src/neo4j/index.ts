@@ -1,1 +1,1 @@
-export * from './neo4j-node.module'
+export * from './neo4j-user.module'

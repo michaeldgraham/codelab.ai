@@ -3,7 +3,7 @@ import { Driver } from 'neo4j-driver'
 import { NEO4J_DATABASE_PROVIDER } from './database'
 
 @Injectable()
-export class Neo4jNodeService {
+export class Neo4jUserService {
   constructor(
     @Inject(NEO4J_DATABASE_PROVIDER) private readonly neo4j: Driver,
   ) {}

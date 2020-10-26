@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Post } from '@nestjs/common'
-import { Neo4jNodeService } from './neo4j-node.service'
+import { Neo4jUserService } from './neo4j-user.service'
 
 @Controller('neo4j')
-export class Neo4jNodeController {
-  constructor(private readonly neo4jService: Neo4jNodeService) {}
+export class Neo4jUserController {
+  constructor(private readonly neo4jService: Neo4jUserService) {}
 
   @Get()
   async findAll() {

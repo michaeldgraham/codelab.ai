@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
+import { ConfigModule } from '@codelab/api/providers/config'
+import { Neo4jUserModule } from '@codelab/api/services/user'
 
 @Module({
-  imports: [],
+  imports: [ConfigModule, Neo4jUserModule],
   controllers: [AppController],
   providers: [AppService],
 })
