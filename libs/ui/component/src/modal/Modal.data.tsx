@@ -24,7 +24,7 @@ export const modal: NodeReactI<Modal.Props | Text.Props> = {
     },
     onCancel: {
       __type: ['Eval'],
-      value: `return () => this.send({ type: 'CLOSE' })`,
+      value: `return () => {this.send({ type: 'CLOSE' }); this.handlecancel()}`,
     },
     visible: {
       __type: ['Eval'],
