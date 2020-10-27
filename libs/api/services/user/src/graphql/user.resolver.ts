@@ -19,8 +19,8 @@ export class UserResolver {
     return new UserModel()
   }
 
-  @Query((returns) => String)
+  @Query((returns) => UserModel)
   test() {
-    return 'test'
+    return new UserModel()
   }
 }
